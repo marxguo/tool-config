@@ -5,8 +5,8 @@ obj = {
   "isrange" : "1",
   "status" : "1",
   "locationid" : "",
-  "rangename" : "",
-  "rangekey" : "",
+  "rangename" : "EN+",
+  "rangekey" : "wifi",
   "outsidesign" : "0"
 };
   
