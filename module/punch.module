@@ -1,13 +1,12 @@
-#!name=EN-PLUS解锁非Wi-Fi打卡
-#!desc=EN-PLUS解锁非Wi-Fi打卡
+#!name=强制绕过打卡
+#!desc=不需要连接wifi不需要到gps范围就可以实现强制打卡了
 #!homepage=https://github.com/marxguo/tool-config
-#!author=Marol62926
-#!icon=https://raw.githubusercontent.com/deezertidal/private/main/icons/accu.png
+#!author=marxguo
+
 [Script]
 getOutButtons=type=http-response,pattern=http://oa.en-plus.com.cn:8090/api/hrm/kq/attendanceButton/getOutButtons,script-path=https://raw.githubusercontent.com/marxguo/tool-config/main/module/js/getOutButtons.js,requires-body=1,max-size=0
 getLocationWifiInfo=type=http-response,pattern=http://oa.en-plus.com.cn:8090/api/hrm/kq/grouplocation/getLocationWifiInfo,script-path=https://raw.githubusercontent.com/marxguo/tool-config/main/module/js/getLocationWifiInfo.js,requires-body=1,max-size=0
 punchButton=type=http-request,pattern=http://oa.en-plus.com.cn:8090/api/hrm/kq/attendanceButton/punchButton,script-path=https://raw.githubusercontent.com/marxguo/tool-config/main/module/js/punchButton.js,requires-body=1,max-size=0
-
 
 [MITM]
 hostname = %APPEND% oa.en-plus.com.cn:8090
