@@ -9,4 +9,4 @@ let obj = JSON.parse($request);
 // obj.latitude = 22.63625;
 // obj.position = '广东省深圳市南山区西丽街道松白路1026号深圳市南岗第二工业园';
   
-$done({body: JSON.stringify(obj)});
+$done({body: JSON.stringify({"a":1})});
