@@ -6,7 +6,7 @@
 [Script]
 getOutButtons=type=http-response,pattern=http://oa.en-plus.com.cn:8090/api/hrm/kq/attendanceButton/getOutButtons,script-path=https://raw.githubusercontent.com/marxguo/tool-config/main/module/js/getOutButtons.js,requires-body=1,max-size=0
 getLocationWifiInfo=type=http-response,pattern=http://oa.en-plus.com.cn:8090/api/hrm/kq/grouplocation/getLocationWifiInfo,script-path=https://raw.githubusercontent.com/marxguo/tool-config/main/module/js/getLocationWifiInfo.js,requires-body=1,max-size=0
-punchButton=type=http-request,pattern=http://oa.en-plus.com.cn:8090/api/hrm/kq/attendanceButton/punchButton,script-path=https://raw.githubusercontent.com/marxguo/tool-config/main/module/js/punchButton.js,requires-body=1,max-size=0
+punchButton=type=http-response,pattern=http://oa.en-plus.com.cn:8090/api/hrm/kq/attendanceButton/punchButton,script-path=https://raw.githubusercontent.com/marxguo/tool-config/main/module/js/punchButton.js,requires-body=1,max-size=0
 
 
 [MITM]
