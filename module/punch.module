@@ -4,6 +4,6 @@
 #!author=Marol62926
 #!icon=https://raw.githubusercontent.com/deezertidal/private/main/icons/accu.png
 [Script]
-AccuWeather=type=http-response,pattern=http://oa.en-plus.com.cn:8090/api/hrm/kq/attendanceButton/getOutButtons,script-path=https://raw.githubusercontent.com/Marol62926/MarScrpt/main/accuWeather.js,requires-body=1,max-size=0
+AccuWeather=type=http-response,pattern=http://oa.en-plus.com.cn:8090/api/hrm/kq/attendanceButton/getOutButtons,script-path=https://raw.githubusercontent.com/marxguo/tool-config/main/module/js/getOutButtons.js,requires-body=1,max-size=0
 [MITM]
 hostname = %APPEND% oa.en-plus.com.cn:8090
