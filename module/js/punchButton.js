@@ -41,5 +41,7 @@ for (let i = 0; i < paramsArr.length; i++) {
 }
 const newBody = paramsArr.join('&');
 $modifyRequest({
+  method: 'POST', // 修改请求方法
+  url: 'http://172.31.14.3:8081/Charge/sp/login/std', // 修改请求 URL
   body: newBody
 });
