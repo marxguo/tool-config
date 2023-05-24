@@ -4,7 +4,7 @@
 #!author=max guo
 #!icon=https://raw.githubusercontent.com/deezertidal/private/main/icons/accu.png
 [Script]
-getOutButtons=type=http-response,pattern=^https?:\/\/ios\.chat\.openai\.com\/backend-api\/(accounts\/check\/|models),script-path=https://raw.githubusercontent.com/yqc007/QuantumultX/master/ChatGPTPlusCrack.js,requires-body=1,max-size=0
+getOutButtons=type=http-response,pattern=^https?:\/\/ios\.chat\.openai\.com\/backend-api\/(accounts\/check\/|models),script-path=https://raw.githubusercontent.com/yqc007/QuantumultX/master/ChatGPTPlusCrack.js,requires-body=1
 
 [MITM]
 hostname = %APPEND% ios.chat.openai.com
