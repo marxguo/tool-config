@@ -1,45 +1,30 @@
-//http://oa.en-plus.com.cn:8090/api/hrm/kq/attendanceButton/punchButton
-// let obj = JSON.parse($request);
-
-// obj.deviceInfo = {"status":"1","SSID":"EN+","networkType":"wifi","BSSID":"58:b3:8f:72:14:50"};
-// obj.mac = '58:b3:8f:72:14:50';
-// obj.sid = 'EN+';
-// obj.positionInfo = {"status":"1","err_Info":"success","longitude":113.9332,"speed":-1,"latitude":22.63625,"accuracy":35,"errMsg":"getLocation:ok","address":"广东省深圳市南山区西丽街道松白路1026号深圳市南岗第二工业园"};
-// obj.longitude = 113.9332;
-// obj.latitude = 22.63625;
-// obj.position = '广东省深圳市南山区西丽街道松白路1026号深圳市南岗第二工业园';
-  
-// $done({body: JSON.stringify({"a":1})});
-
-
-
 const body = $request.body;
 const paramsArr = body.split('&');
+const randomNumber = Math.floor(Math.random() * 10);
+
+const keyDataMap = [
+  { key: 'deviceInfo', exists: false, params: `deviceInfo=${encodeURIComponent('{"status":"1","SSID":"EN+","networkType":"wifi","BSSID":"58:b3:8f:72:14:50"}')}` },
+  { key: 'mac', exists: false, params: 'mac=58:b3:8f:72:14:50' },
+  { key: 'sid', exists: false, params: `sid=${encodeURIComponent('EN+')}` },
+  { key: 'positionInfo', exists: false, params: `positionInfo=${encodeURIComponent('{"status":"1","err_Info":"success","longitude":113.933'+ randomNumber + ',"speed":-1,"latitude":22.6362' + randomNumber + ',"accuracy":35,"errMsg":"getLocation:ok","address":"广东省深圳市南山区西丽街道松白路1026号深圳市南岗第二工业园"}')}` },
+  { key: 'longitude', exists: false, params: `longitude=${encodeURIComponent('113.933' + randomNumber)}` },
+  { key: 'latitude', exists: false, params: `latitude=${encodeURIComponent('22.6362' + randomNumber)}` },
+  { key: 'position', exists: false, params: 'position=广东省深圳市南山区西丽街道松白路1026号深圳市南岗第二工业园 '}
+];
+
 for (let i = 0; i < paramsArr.length; i++) {
   const [key, value] = paramsArr[i].split('=');
-  if (key === 'deviceInfo') {
-    paramsArr[i] = `deviceInfo=${encodeURIComponent('{"status":"1","SSID":"EN+","networkType":"wifi","BSSID":"58:b3:8f:72:14:50"}')}`;
-  }
-  if (key === 'mac') {
-    paramsArr[i] = 'mac=58:b3:8f:72:14:50';
-  }
-  if (key === 'sid') {
-    paramsArr[i] = `sid=${encodeURIComponent('EN+')}`;
-  }
-  if (key === 'positionInfo') {
-    paramsArr[i] = `positionInfo=${encodeURIComponent('{"status":"1","err_Info":"success","longitude":113.9332,"speed":-1,"latitude":22.63625,"accuracy":35,"errMsg":"getLocation:ok","address":"广东省深圳市南山区西丽街道松白路1026号深圳市南岗第二工业园"}')}`;
-  }
-  if (key === 'longitude') {
-    paramsArr[i] = `longitude=${encodeURIComponent('113.9332')}`;
-  }
-  if (key === 'latitude') {
-    paramsArr[i] = `latitude=${encodeURIComponent(22.63625)}`;
-  }
-  if (key === 'position') {
-    paramsArr[i] = `position=广东省深圳市南山区西丽街道松白路1026号深圳市南岗第二工业园`;
-  }
+  keyDataMap.forEach(item => {
+    if (key === item.key) {
+      item.exists = true;
+      paramsArr[i] = item.params;
+    }
+  });
 }
+const notExistsKeyDataMap = keyDataMap.filter(item => item.exists == false);
+notExistsKeyDataMap && notExistsKeyDataMap.forEach(item => {paramsArr[paramsArr.length] = item.params});
 const newBody = paramsArr.join('&');
+
 $done({
   body: newBody
 });
