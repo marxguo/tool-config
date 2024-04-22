@@ -1,0 +1,16 @@
+#!url=https://raw.githubusercontent.com/chxm1023/Script_X/main/Collections.sgmodule
+#!name=彩云天气
+#!desc=SVIP会员、SVIP地图
+#!homepage=https://raw.githubusercontent.com/chxm1023/Script_X/main/Collections.sgmodule
+#!author=chxm1023
+
+[Script]
+彩云天气-SVIP会员 = type=http-response,pattern=^https?:\/\/(biz|wrapper|starplucker)\.(cyapi|caiyunapp)\.(cn|com)\/(.+\/(user\?app_name|activity\?app_name|visitors|operation\/banners)|p\/v\d\/(vip_info|user_info)),requires-body=1,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/caiyuntianqi.js
+彩云天气-SVIP地图 = type=http-request,pattern=^https?:\/\/(api|wrapper)\.(cyapi|caiyunapp)\.(cn|com)\/v\d\/(satellite|nafp\/origin_images),requires-body=0,max-size=0,script-path=https://raw.githubusercontent.com/chxm1023/Rewrite/main/caiyuntianqi.js
+
+[URL Rewrite]
+# 彩云天气去广告
+^https?:\/\/ad\.(caiyunapp|cyapi)\.(cn|com) - reject
+
+[MITM]
+hostname = *.cyapi.cn, *.caiyunapp.com, adx.sogaha.cn
