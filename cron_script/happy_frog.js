@@ -6,7 +6,7 @@
 //      从响应 Set-Cookie 中读取 session_id 并缓存
 //   2. 调用签到接口 https://ue2.taotu.ink/api/user/points/checkin
 //      使用 session_id 作为 Cookie 授权
-//   3. 执行结果通过 Quantumult X 通知输出
+//   3. 执行结果通过 Quantumult X 通知和 $done 弹窗输出
 //
 // 使用说明：
 //   1. 修改下面的 DEFAULT_USERNAME / DEFAULT_PASSWORD
@@ -47,6 +47,50 @@ function notify(title, subtitle, body) {
   }
 
   console.log(`[通知] ${realTitle} - ${subtitle || ''} - ${realBody}`);
+}
+
+// 简单转义，避免弹窗里的接口返回内容破坏 HTML 结构
+function escapeHtml(text) {
+  return String(text || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+// 生成 $done 弹窗的 htmlMessage。弹窗尺寸小，所以用紧凑排版和较小字号。
+function buildPopupHtml(statusEmoji, statusText, message) {
+  const safeText = escapeHtml(statusText);
+  const safeMessage = escapeHtml(message);
+
+  return `
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "PingFang SC", sans-serif; background: #f7f8fa; }
+    .card { padding: 10px 12px 14px; color: #222; }
+    .status { font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 4px; margin-bottom: 8px; }
+    .status span { font-size: 16px; }
+    .message { font-size: 12px; line-height: 1.6; word-break: break-all; white-space: pre-wrap; background: #ffffff; border-radius: 8px; padding: 8px 10px; }
+  </style>
+  <div class="card">
+    <div class="status"><span>${statusEmoji}</span>${safeText}</div>
+    <div class="message">${safeMessage}</div>
+  </div>`;
+}
+
+// 统一结束脚本：先通知，再用 $done 弹窗展示结果
+function finishWithResult(statusEmoji, statusText, message) {
+  const title = `${statusText} · 快乐蛙签到`;
+  const htmlMessage = buildPopupHtml(statusEmoji, statusText, `${message}`);
+
+  notify(`${statusEmoji} ${title}`, statusText, message);
+
+  if (typeof $done === 'function') {
+    $done({ title: `${statusEmoji} ${title}`, htmlMessage });
+    return;
+  }
+
+  console.log(`${statusEmoji} ${title}\n${message}`);
 }
 
 // 保存登录返回的 session_id
@@ -226,27 +270,19 @@ async function main() {
   const result = await checkIn(sessionId);
 
   if (result.ok) {
-    notify('快乐蛙签到', '签到成功', result.message);
+    finishWithResult('✅', '签到成功', result.message);
     return;
   }
 
   // 常见情况：今天已经签到过
-  notify('快乐蛙签到', '已执行', result.message);
+  finishWithResult('ℹ️', '已执行', result.message);
 }
 
 main().then(
-  () => {
-    if (typeof $done === 'function') {
-      $done();
-    }
-  },
+  () => {},
   (error) => {
     const message = error && error.message ? error.message : String(error);
     console.log(`执行失败：${message}`);
-    notify('快乐蛙签到', '执行失败', message);
-
-    if (typeof $done === 'function') {
-      $done();
-    }
+    finishWithResult('❌', '执行失败', message);
   }
 );
