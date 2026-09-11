@@ -6,7 +6,8 @@
 //      从响应 Set-Cookie 中读取 session_id 并缓存
 //   2. 调用签到接口 https://ue2.taotu.ink/api/user/points/checkin
 //      使用 session_id 作为 Cookie 授权
-//   3. 执行结果通过 Quantumult X 通知和 $done 弹窗输出
+//   3. 签到成功后自动调用积分兑换接口 https://ue2.taotu.ink/api/user/points/redeem
+//   4. 执行结果通过 Quantumult X 通知和 $done 弹窗输出
 //
 // 使用说明：
 //   1. 修改下面的 DEFAULT_USERNAME / DEFAULT_PASSWORD
@@ -25,7 +26,9 @@ const DEFAULT_PASSWORD = 'Kqwte-eDiQLwyyHQjBF7Sg';
 const BASE_URL = 'https://ue2.taotu.ink';
 const LOGIN_URL = `${BASE_URL}/api/requests/auth`;
 const CHECKIN_URL = `${BASE_URL}/api/user/points/checkin`;
+const REDEEM_URL = `${BASE_URL}/api/user/points/redeem`;
 const ICON_URL = `${BASE_URL}/static/img/logo-app-2.png`;
+const REDEEM_ITEM_ID = 'item_1787493099078';
 
 // session_id 缓存在 $prefs 中的 key
 const SESSION_KEY = 'taotu_session_id';
@@ -261,6 +264,40 @@ async function checkIn(sessionId) {
   return { ok: false, message: data.message || '签到接口返回未知状态', data };
 }
 
+// 调用积分兑换接口，只在签到成功后执行
+async function redeem(sessionId) {
+  const headers = {
+    Accept: '*/*',
+    'Accept-Language': 'zh-CN,zh;q=0.9',
+    'Content-Type': 'application/json',
+    Cookie: `session_id=${sessionId}`,
+    Origin: BASE_URL,
+    Referer: `${BASE_URL}/?tab=profile`,
+    'User-Agent': USER_AGENT
+  };
+
+  const response = await fetchText(REDEEM_URL, 'POST', headers, JSON.stringify({
+    item_id: REDEEM_ITEM_ID
+  }));
+
+  if (response.statusCode && response.statusCode >= 400) {
+    throw new Error(`积分兑换接口返回 HTTP ${response.statusCode}`);
+  }
+
+  const data = parseJson(response.body);
+  if (!data) {
+    throw new Error(`积分兑换接口响应解析失败：${response.body || ''}`);
+  }
+
+  console.log(`积分兑换接口响应：${response.body}`);
+
+  if (data.status === 'success') {
+    return { ok: true, message: data.message || '兑换成功', data };
+  }
+
+  return { ok: false, message: data.message || '兑换接口返回未知状态', data };
+}
+
 // 主流程
 async function main() {
   // 先登录拿 cookie
@@ -269,13 +306,39 @@ async function main() {
   // 再签到
   const result = await checkIn(sessionId);
 
-  if (result.ok) {
-    finishWithResult('✅', '签到成功', result.message);
+  if (!result.ok) {
+    // 常见情况：今天已经签到过，不重复兑换
+    finishWithResult('ℹ️', '已执行', result.message);
     return;
   }
 
-  // 常见情况：今天已经签到过
-  finishWithResult('ℹ️', '已执行', result.message);
+  // 签到成功后才自动兑换积分
+  const checkinMessage = result.message || '签到成功';
+
+  try {
+    const redeemResult = await redeem(sessionId);
+
+    if (redeemResult.ok) {
+      finishWithResult(
+        '✅',
+        '签到成功 · 兑换成功',
+        `签到：${checkinMessage}\n兑换：${redeemResult.message}`
+      );
+    } else {
+      finishWithResult(
+        '⚠️',
+        '签到成功 · 兑换失败',
+        `签到：${checkinMessage}\n兑换：${redeemResult.message}`
+      );
+    }
+  } catch (error) {
+    const message = error && error.message ? error.message : String(error);
+    finishWithResult(
+      '⚠️',
+      '签到成功 · 兑换异常',
+      `签到：${checkinMessage}\n兑换：${message}`
+    );
+  }
 }
 
 main().then(
