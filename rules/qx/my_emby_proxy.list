@@ -1,0 +1,14 @@
+# > Sntp（挂梯子）
+DOMAIN-SUFFIX,lite.cn2gias.uk,proxy
+
+# > 予初
+DOMAIN-SUFFIX,emby.yusen.us.ci,proxy
+DOMAIN-SUFFIX,aaa.yusen6.ccwu.cc,proxy
+DOMAIN-SUFFIX,emby.yusen.cc.cd,proxy
+
+# > 乐蛙
+DOMAIN-SUFFIX,llyemby.cc.cd,proxy
+
+# > OK
+DOMAIN-SUFFIX,link00.okemby.org,proxy
+DOMAIN-SUFFIX,link01.okemby.org,proxy
