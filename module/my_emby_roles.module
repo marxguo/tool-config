@@ -6,7 +6,7 @@
 [Role]
 
 
-######################## DIRECT ########################
+######################## 直连 ########################
 # > AniHub
 DOMAIN-SUFFIX,ani.cappuccino.moe,direct
 
@@ -53,7 +53,7 @@ DOMAIN-SUFFIX,emby.kingemby.com,direct
 
 
 
-######################## PROXY ########################
+######################## 代理 ########################
 # > Sntp（挂梯子）
 DOMAIN-SUFFIX,lite.cn2gias.uk,proxy
 
