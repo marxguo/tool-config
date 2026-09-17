@@ -21,3 +21,8 @@ DOMAIN-SUFFIX,test.inemby.us.ci
 
 # > ItsmyGo
 DOMAIN-SUFFIX,itsmygo.tv
+
+# > 2F
+DOMAIN-SUFFIX,emby.dremby.com
+# 旧线路
+DOMAIN-SUFFIX,emby.huangmin.cc.cd
