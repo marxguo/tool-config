@@ -4,7 +4,7 @@
 #!author=max guo
 #!icon=https://www.en-plus.com.cn/public/uploads/images/20220228/8e7daf23d8c692041700ba3fb11935ef.png
 
-[Role]
+[Rule]
 ######################## DIRECT ########################
 # git服务地址
 IP-CIDR,10.30.50.43/32,公司内网JENKINS服务器,no-resolve
