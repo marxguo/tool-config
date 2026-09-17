@@ -1,0 +1,11 @@
+#!name=Emby公益服分流
+#!desc=TG个大公益服分流规则
+#!homepage=https://raw.githubusercontent.com/marxguo/tool-config/refs/heads/main/module/module/my_emby.module
+#!author=max guo
+#!icon=https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/emby.png
+
+[Role]
+######################## DIRECT ########################
+# git服务地址
+IP-CIDR,10.30.50.43/32,公司内网JENKINS服务器,no-resolve
+IP-CIDR,10.0.0.0/8,DIRECT

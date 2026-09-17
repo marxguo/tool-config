@@ -1,0 +1,72 @@
+#!name=Emby公益服分流
+#!desc=TG个大公益服分流规则
+#!homepage=https://raw.githubusercontent.com/marxguo/tool-config/refs/heads/main/module/module/my_emby.module
+#!author=max guo
+#!icon=https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/emby.png
+
+[Role]
+######################## DIRECT ########################
+# > AniHub
+DOMAIN-SUFFIX,ani.cappuccino.moe,direct
+
+# > 二刺螈
+DOMAIN-SUFFIX,media.nijigem.by,direct
+
+# > nyamedia
+DOMAIN-SUFFIX,emby.bangumi.ca,direct
+
+# > 予初
+DOMAIN-SUFFIX,embya.yusen.cyou,direct
+
+# > 乐蛙
+DOMAIN-SUFFIX,emby.taotu.ink,direct
+
+# > 乐观
+DOMAIN-SUFFIX,emby.dijia.de,direct
+
+# > Nox
+DOMAIN-SUFFIX,test.inemby.us.ci,direct
+
+# > ItsmyGo
+DOMAIN-SUFFIX,itsmygo.tv,direct
+
+# > 2F
+DOMAIN-SUFFIX,emby.dremby.com,direct
+# 旧线路
+DOMAIN-SUFFIX,emby.huangmin.cc.cd,direct
+DOMAIN-SUFFIX,guangyacdn.com,direct
+
+# > 帝服
+DOMAIN-SUFFIX,emby.di0.uk,direct
+
+# > 星核
+DOMAIN-SUFFIX,emby.staryuki.com,direct
+
+# > 随时跑路
+DOMAIN-SUFFIX,emby.kingemby.com,direct
+
+
+
+
+
+
+
+
+######################## PROXY ########################
+# > Sntp（挂梯子）
+DOMAIN-SUFFIX,lite.cn2gias.uk,proxy
+
+# > 予初
+DOMAIN-SUFFIX,emby.yusen.us.ci,proxy
+DOMAIN-SUFFIX,aaa.yusen6.ccwu.cc,proxy
+DOMAIN-SUFFIX,emby.yusen.cc.cd,proxy
+
+# > 乐蛙
+DOMAIN-SUFFIX,llyemby.cc.cd,proxy
+
+# > OK
+DOMAIN-SUFFIX,link00.okemby.org,proxy
+DOMAIN-SUFFIX,link01.okemby.org,proxy
+
+# > 营养快线
+DOMAIN-SUFFIX,yykx.top,proxy
