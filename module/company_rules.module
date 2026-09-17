@@ -1,8 +1,8 @@
 #!name=Emby公益服分流
 #!desc=TG个大公益服分流规则
-#!homepage=https://raw.githubusercontent.com/marxguo/tool-config/refs/heads/main/module/module/my_emby.module
+#!homepage=https://raw.githubusercontent.com/marxguo/tool-config/refs/heads/main/module/module/company_rules.module
 #!author=max guo
-#!icon=https://raw.githubusercontent.com/lige47/QuanX-icon-rule/main/icon/04ProxySoft/emby.png
+#!icon=https://www.en-plus.com.cn/public/uploads/images/20220228/8e7daf23d8c692041700ba3fb11935ef.png
 
 [Role]
 ######################## DIRECT ########################
