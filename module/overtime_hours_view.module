@@ -1,0 +1,10 @@
+#!name=查看OA本月加班时长
+#!desc=随时随地查看加班时长
+#!homepage=https://github.com/marxguo/tool-config
+#!author=marxguo
+
+[Script]
+getHrmKQReportInfo=type=http-response,pattern=http://oa.en-plus.com.cn:8090/api/kq/myattendance/getHrmKQReportInfo,script-path=https://raw.githubusercontent.com/marxguo/tool-config/main/module/js/getHrmKQReportInfo.js,requires-body=1,max-size=0
+
+[MITM]
+hostname = %APPEND% oa.en-plus.com.cn:8090
