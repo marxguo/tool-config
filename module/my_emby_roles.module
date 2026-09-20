@@ -33,7 +33,7 @@ DOMAIN-SUFFIX,itsmygo.tv,direct
 # > 2F
 DOMAIN-SUFFIX,emby.dremby.com,direct
 # 旧线路
-DOMAIN-SUFFIX,emby.huangmin.cc.cd,direct
+DOMAIN-SUFFIX,huangmin.cc.cd,proxy
 DOMAIN-SUFFIX,guangyacdn.com,direct
 
 # > 帝服
