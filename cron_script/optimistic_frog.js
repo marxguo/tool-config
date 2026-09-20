@@ -20,15 +20,15 @@
 
 // 这里必须填写 dijia.de 的账号密码。
 // 也可以改用 QX 的 $prefs 值：taotu_username / taotu_password。
-const DEFAULT_USERNAME = 'xxxxxxx';
-const DEFAULT_PASSWORD = 'xxxxxxx';
+const DEFAULT_USERNAME = 'guosir';
+const DEFAULT_PASSWORD = '2Rl99I-GrQr7RYDYRPk5Fg';
 
 const BASE_URL = 'https://embyyh.dijia.de';
 const LOGIN_URL = `${BASE_URL}/api/requests/auth`;
 const CHECKIN_URL = `${BASE_URL}/api/user/points/checkin`;
 const REDEEM_URL = `${BASE_URL}/api/user/points/redeem`;
 const ICON_URL = `${BASE_URL}/static/img/logo-app-2.png`;
-const REDEEM_ITEM_ID = 'item_1787493099078';
+const REDEEM_ITEM_ID = 'item_1789050263434';
 
 // session_id 缓存在 $prefs 中的 key
 const SESSION_KEY = 'taotu_session_id';

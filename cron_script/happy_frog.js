@@ -20,8 +20,8 @@
 
 // 这里必须填写 taotu.ink 的账号密码。
 // 也可以改用 QX 的 $prefs 值：taotu_username / taotu_password。
-const DEFAULT_USERNAME = 'xxxxxxx';
-const DEFAULT_PASSWORD = 'xxxxxxx';
+const DEFAULT_USERNAME = 'guosir';
+const DEFAULT_PASSWORD = 'Kqwte-eDiQLwyyHQjBF7Sg';
 
 const BASE_URL = 'https://ue2.taotu.ink';
 const LOGIN_URL = `${BASE_URL}/api/requests/auth`;
