@@ -1,29 +1,29 @@
 // ============================================================================
-// 快乐蛙（taotu.ink）每日签到脚本，用于 Quantumult X 定时任务
+// 乐观（dijia.de）每日签到脚本，用于 Quantumult X 定时任务
 // ----------------------------------------------------------------------------
 // 功能：
-//   1. 调用登录接口 https://ue2.taotu.ink/api/requests/auth
+//   1. 调用登录接口 https://embyyh.dijia.de/api/requests/auth
 //      从响应 Set-Cookie 中读取 session_id 并缓存
-//   2. 调用签到接口 https://ue2.taotu.ink/api/user/points/checkin
+//   2. 调用签到接口 https://embyyh.dijia.de/api/user/points/checkin
 //      使用 session_id 作为 Cookie 授权
-//   3. 签到成功后自动调用积分兑换接口 https://ue2.taotu.ink/api/user/points/redeem
+//   3. 签到成功后自动调用积分兑换接口 https://embyyh.dijia.de/api/user/points/redeem
 //   4. 执行结果通过 Quantumult X 通知和 $done 弹窗输出
 //
 // 使用说明：
 //   1. 修改下面的 DEFAULT_USERNAME / DEFAULT_PASSWORD
 //   2. 在 Quantumult X [task_local] 配置中添加定时任务，例如：
-//      45 8 * * * https://raw.githubusercontent.com/<你的仓库>/cron_script/happy_frog.js, tag=快乐蛙签到, img-url=https://ue2.taotu.ink/static/img/logo-app-2.png
+//      45 8 * * * https://raw.githubusercontent.com/<你的仓库>/cron_script/happy_frog.js, tag=乐观签到, img-url=https://embyyh.dijia.de/static/img/logo-app-2.png
 //
 // 脚本图标：
-//   https://ue2.taotu.ink/static/img/logo-app-2.png
+//   https://embyyh.dijia.de/static/img/logo-app-2.png
 // ============================================================================
 
-// 这里必须填写 taotu.ink 的账号密码。
+// 这里必须填写 dijia.de 的账号密码。
 // 也可以改用 QX 的 $prefs 值：taotu_username / taotu_password。
 const DEFAULT_USERNAME = 'xxxxxxx';
 const DEFAULT_PASSWORD = 'xxxxxxx';
 
-const BASE_URL = 'https://ue2.taotu.ink';
+const BASE_URL = 'https://embyyh.dijia.de';
 const LOGIN_URL = `${BASE_URL}/api/requests/auth`;
 const CHECKIN_URL = `${BASE_URL}/api/user/points/checkin`;
 const REDEEM_URL = `${BASE_URL}/api/user/points/redeem`;
@@ -36,7 +36,7 @@ const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/
 
 // 发送通知。兼容 $notification.post 和旧脚本常见的 $notify。
 function notify(title, subtitle, body) {
-  const realTitle = title || '快乐蛙签到';
+  const realTitle = title || '乐观签到';
   const realBody = body || '请查看日志';
 
   if (typeof $notification !== 'undefined' && typeof $notification.post === 'function') {
@@ -83,7 +83,7 @@ function buildPopupHtml(statusEmoji, statusText, message) {
 
 // 统一结束脚本：先通知，再用 $done 弹窗展示结果
 function finishWithResult(statusEmoji, statusText, message) {
-  const title = `${statusText} · 快乐蛙签到`;
+  const title = `${statusText} · 乐观签到`;
   const htmlMessage = buildPopupHtml(statusEmoji, statusText, `${message}`);
 
   notify(`${statusEmoji} ${title}`, statusText, message);
@@ -191,7 +191,7 @@ async function login() {
   const password = typeof $prefs !== 'undefined' ? ($prefs.valueForKey('taotu_password') || DEFAULT_PASSWORD) : DEFAULT_PASSWORD;
 
   if (!username || !password) {
-    throw new Error('未配置 taotu.ink 账号或密码');
+    throw new Error('未配置 dijia.de 账号或密码');
   }
 
   const headers = {
