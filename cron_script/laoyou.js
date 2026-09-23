@@ -31,7 +31,7 @@ const ICON_URL = `${BASE_URL}/static/img/logo-app-2.png`;
 const REDEEM_ITEM_ID = 'renew_30';
 
 // session_id 缓存在 $prefs 中的 key
-const SESSION_KEY = 'taotu_session_id';
+const SESSION_KEY = 'session_id';
 const USER_AGENT = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/152.0.0.0 Safari/537.36';
 
 // 发送通知。兼容 $notification.post 和旧脚本常见的 $notify。
