@@ -12,7 +12,7 @@
 // 使用说明：
 //   1. 修改下面的 DEFAULT_USERNAME / DEFAULT_PASSWORD
 //   2. 在 Quantumult X [task_local] 配置中添加定时任务，例如：
-//      45 8 * * * https://raw.githubusercontent.com/<你的仓库>/cron_script/happy_frog.js, tag=宸澄签到, img-url=https://register.wybcs.work/static/img/logo-app-2.png
+//      45 8 * * * https://raw.githubusercontent.com/tool-config/cron_script/wybcs.js, tag=宸澄签到, img-url=https://register.wybcs.work/static/img/logo-app-2.png
 //
 // 脚本图标：
 //   https://register.wybcs.work/static/img/logo-app-2.png
