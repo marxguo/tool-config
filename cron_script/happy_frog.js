@@ -24,9 +24,12 @@ const DEFAULT_USERNAME = 'guoooooosir';
 const DEFAULT_PASSWORD = 'Kqwte-eDiQLwyyHQjBF7Sg';
 
 const BASE_URL = 'https://ue2.taotu.ink';
+const SERVICE_NAME = '快乐蛙';
 const LOGIN_URL = `${BASE_URL}/api/requests/auth`;
 const CHECKIN_URL = `${BASE_URL}/api/user/points/checkin`;
 const REDEEM_URL = `${BASE_URL}/api/user/points/redeem`;
+const SLOT_SPIN_URL = `${BASE_URL}/api/slot/spin`;
+const WHEEL_SPIN_URL = `${BASE_URL}/api/wheel/spin`;
 const ICON_URL = `${BASE_URL}/static/img/logo-app-2.png`;
 const REDEEM_ITEM_ID = 'item_1787493099078';
 
@@ -83,7 +86,7 @@ function buildPopupHtml(statusEmoji, statusText, message) {
 
 // 统一结束脚本：先通知，再用 $done 弹窗展示结果
 function finishWithResult(statusEmoji, statusText, message) {
-  const title = `${statusText} · 快乐蛙签到`;
+  const title = `${statusText} · ${SERVICE_NAME}签到`;
   const htmlMessage = buildPopupHtml(statusEmoji, statusText, `${message}`);
 
   notify(`${statusEmoji} ${title}`, statusText, message);
@@ -298,6 +301,27 @@ async function redeem(sessionId) {
   return { ok: false, message: data.message || '兑换接口返回未知状态', data };
 }
 
+async function callSpinApi(sessionId, url, name) {
+  const headers = {
+    Accept: '*/*',
+    'Accept-Language': 'zh-CN,zh;q=0.9',
+    'Content-Length': '0',
+    'Content-Type': 'application/json',
+    Cookie: `session_id=${sessionId}`,
+    Origin: BASE_URL,
+    Referer: `${BASE_URL}/?tab=profile`,
+    'User-Agent': USER_AGENT
+  };
+
+  const response = await fetchText(url, 'POST', headers, '');
+
+  if (response.statusCode && response.statusCode >= 400) {
+    throw new Error(`${name}接口返回 HTTP ${response.statusCode}`);
+  }
+
+  console.log(`${name}接口响应：${response.body || ''}`);
+}
+
 // 主流程
 async function main() {
   // 先登录拿 cookie
@@ -314,6 +338,20 @@ async function main() {
 
   // 签到成功后才自动兑换积分
   const checkinMessage = result.message || '签到成功';
+  const spinResults = [];
+
+  for (const spinApi of [
+    { url: SLOT_SPIN_URL, name: '老虎机抽奖' },
+    { url: WHEEL_SPIN_URL, name: '幸运转盘' }
+  ]) {
+    try {
+      await callSpinApi(sessionId, spinApi.url, spinApi.name);
+      spinResults.push(`${spinApi.name}：已调用`);
+    } catch (error) {
+      const message = error && error.message ? error.message : String(error);
+      spinResults.push(`${spinApi.name}：${message}`);
+    }
+  }
 
   try {
     const redeemResult = await redeem(sessionId);
@@ -322,13 +360,13 @@ async function main() {
       finishWithResult(
         '✅',
         '签到成功 · 兑换成功',
-        `签到：${checkinMessage}\n兑换：${redeemResult.message}`
+        `签到：${checkinMessage}\n抽奖：${spinResults.join('；')}\n兑换：${redeemResult.message}`
       );
     } else {
       finishWithResult(
         '⚠️',
         '签到成功 · 兑换失败',
-        `签到：${checkinMessage}\n兑换：${redeemResult.message}`
+        `签到：${checkinMessage}\n抽奖：${spinResults.join('；')}\n兑换：${redeemResult.message}`
       );
     }
   } catch (error) {
@@ -336,7 +374,7 @@ async function main() {
     finishWithResult(
       '⚠️',
       '签到成功 · 兑换异常',
-      `签到：${checkinMessage}\n兑换：${message}`
+      `签到：${checkinMessage}\n抽奖：${spinResults.join('；')}\n兑换：${message}`
     );
   }
 }

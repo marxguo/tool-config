@@ -41,6 +41,21 @@ DOMAIN-SUFFIX,t0.97img.com,direct
 # > 随时跑路
 DOMAIN-SUFFIX,emby.kingemby.com,direct
 
+# > 茶包
+DOMAIN-SUFFIX,tbagemby.tbag.dpdns.org,direct
+DOMAIN-SUFFIX,tbagemby.tbag.qzz.io,direct
+DOMAIN-SUFFIX,tbagemby-kr.tbag.dpdns.org,direct
+
+# > 老友记
+DOMAIN-SUFFIX,emby.605305.xyz,direct
+DOMAIN-SUFFIX,ofo.033388.xyz,direct
+DOMAIN-SUFFIX,lyj.ysz.dpdns.org,direct
+DOMAIN-SUFFIX,cdn.605305.xyz,direct
+DOMAIN-SUFFIX,reverse.605305.xyz,direct
+
+# > 宸澄
+DOMAIN-SUFFIX,media.wybcs.work,direct
+
 
 
 
