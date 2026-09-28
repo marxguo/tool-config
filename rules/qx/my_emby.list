@@ -56,6 +56,11 @@ DOMAIN-SUFFIX,reverse.605305.xyz,direct
 # > 宸澄
 DOMAIN-SUFFIX,media.wybcs.work,direct
 
+# > 龟仙屋
+DOMAIN-SUFFIX,gxwplay.top,direct
+
+
+
 
 
 
@@ -81,3 +86,6 @@ DOMAIN-SUFFIX,link01.okemby.org,proxy
 
 # > 营养快线
 DOMAIN-SUFFIX,yykx.top,proxy
+
+# > 龟仙屋
+DOMAIN-SUFFIX,gxwplay.com,proxy
