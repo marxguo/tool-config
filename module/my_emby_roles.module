@@ -64,6 +64,23 @@ DOMAIN-SUFFIX,media.wybcs.work,direct
 # > 龟仙屋
 DOMAIN-SUFFIX,gxwplay.top,direct
 
+# > 西瓜
+DOMAIN-SUFFIX,www.yuntv.de,direct
+
+# > 月饼
+DOMAIN-SUFFIX,emby.my,direct
+
+# > nayovo
+DOMAIN-SUFFIX,nay.007.us.kg,direct
+
+# > 茶百道
+DOMAIN-SUFFIX,emby.teawaya.com,direct
+DOMAIN-SUFFIX,emby.7s.l.cd,direct
+
+
+# > 反代弟子
+DOMAIN-SUFFIX,auto.liuerao.dpdns.org,direct
+DOMAIN-SUFFIX,auto.dolby.dpdns.org,direct
 
 
 
