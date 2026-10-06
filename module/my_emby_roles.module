@@ -18,6 +18,10 @@ DOMAIN-SUFFIX,emby.bangumi.ca,direct
 # > 予初
 DOMAIN-SUFFIX,embya.yusen.cyou,direct
 
+# > 予初 Pro
+DOMAIN-SUFFIX,yuchu.yusen.cc.cd,direct
+DOMAIN-SUFFIX,9527.yusen.cyou,direct
+
 # > 乐蛙
 DOMAIN-SUFFIX,emby.taotu.ink,direct
 
