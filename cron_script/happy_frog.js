@@ -221,6 +221,7 @@ async function login() {
   }
 
   const setCookieHeader = getHeader(response.headers, 'set-cookie');
+  console.log(`cookieHeader=${setCookieHeader || ''}, responseBody=${response.body || ''}`);
   const sessionId =
     extractSessionIdFromCookieHeader(setCookieHeader) ||
     extractSessionIdFromBody(response.body);
