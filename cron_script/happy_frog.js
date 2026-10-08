@@ -227,7 +227,7 @@ async function login() {
     extractSessionIdFromBody(response.body);
 
   if (!sessionId) {
-    throw new Error(`登录接口未返回 session_id，原始响应：${response.body || ''}`);
+    throw new Error(`登录接口未返回 session_id，原始响应：cookieHeader=${setCookieHeader || ''}, responseBody=${response.body || ''}`);
   }
 
   saveSessionId(sessionId);
