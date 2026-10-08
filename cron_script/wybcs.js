@@ -152,7 +152,7 @@ function getHeader(headers, targetName) {
 // 从 Set-Cookie / set-cookie 中提取 session_id
 function extractSessionIdFromCookieHeader(cookieHeader) {
   if (!cookieHeader) {
-    return '';
+    return undefined;
   }
 
   const parts = Array.isArray(cookieHeader) ? cookieHeader : [cookieHeader];
@@ -167,14 +167,14 @@ function extractSessionIdFromCookieHeader(cookieHeader) {
     }
   }
 
-  return '';
+  return undefined;
 }
 
 // 从登录响应 body 中提取 session_id
 function extractSessionIdFromBody(bodyText) {
   const json = parseJson(bodyText);
   if (!json) {
-    return '';
+    return undefined;
   }
 
   if (typeof json.session_id === 'string') {
@@ -185,7 +185,7 @@ function extractSessionIdFromBody(bodyText) {
     return json.data.session_id;
   }
 
-  return '';
+  return undefined;
 }
 
 // 调用登录接口，从 Set-Cookie 中拿到 session_id

@@ -152,7 +152,7 @@ function getHeader(headers, targetName) {
 // 从 Set-Cookie / set-cookie 中提取 session_id
 function extractSessionIdFromCookieHeader(cookieHeader) {
   if (!cookieHeader) {
-    return '';
+    return undefined;
   }
 
   const parts = Array.isArray(cookieHeader) ? cookieHeader : [cookieHeader];
@@ -167,7 +167,7 @@ function extractSessionIdFromCookieHeader(cookieHeader) {
     }
   }
 
-  return '';
+  return undefined;
 }
 
 // 从登录响应 body 中提取 session_id
