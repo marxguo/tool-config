@@ -9,3 +9,6 @@
 # git服务地址
 IP-CIDR,10.30.50.43/32,公司内网JENKINS服务器,no-resolve
 IP-CIDR,10.0.0.0/8,DIRECT
+
+# > 跳板机
+IP-CIDR,8.222.155.150/32,DIRECT
