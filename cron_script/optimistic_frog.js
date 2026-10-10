@@ -157,7 +157,7 @@ function extractSessionIdFromCookieHeader(cookieHeader) {
 
   const parts = Array.isArray(cookieHeader) ? cookieHeader : [cookieHeader];
   const joined = parts.join('\n');
-  const match = joined.match(/(?:^|;\s*)session_id=([^;\s]+)/i);
+  const match = joined.match(/(?:^|[,;\s])session_id=([^;,\s]+)/i);
 
   if (match) {
     try {
