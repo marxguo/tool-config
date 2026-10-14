@@ -148,7 +148,4 @@ IP-CIDR,23.146.72.90/32,proxy
 
 
 ######################## 拦截回传 ########################
-URL-REGEX,^(https?://)?(?:02\.bestemby\.com|tv\.bmhyk\.vip|em\.mlhyy\.top|v\.tvs168\.cc|embycc\.wybcs\.work|pro1\.jellyfin\.asia|emby\.kingemby\.com|35\.74\.225\.107|103\.236\.99\.177)(?::\d+)?/emby/Sessions/Playing/Progress(?:\?.*)?$,REJECT
-
-[MITM]
-hostname = *.bestemby.com, *.bmhyk.vip, *.mlhyy.top, *.tvs168.cc, *.wybcs.work, *.jellyfin.asia, *.kingemby.com
+URL-REGEX,https://02.bestemby.com:15666/emby/Sessions/Playing/Progress?reqformat=json,REJECT
