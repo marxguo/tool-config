@@ -148,4 +148,29 @@ IP-CIDR,23.146.72.90/32,proxy
 
 
 ######################## 拦截回传 ########################
+
+# > Wave
 URL-REGEX,https://02.bestemby.com:15666/emby/Sessions/Playing/Progress?reqformat=json,REJECT
+
+# > 水母VIP
+URL-REGEX,http://pro1.jellyfin.asia:8099/emby/Sessions/Playing/Progress?reqformat=json,REJECT
+
+# > 宸澄
+URL-REGEX,http://embycc.wybcs.work:443/emby/Sessions/Playing/Progress?reqformat=json,REJECT
+
+# > tvs168
+URL-REGEX,https://v.tvs168.cc:443/emby/Sessions/Playing/Progress?reqformat=json,REJECT
+
+# > 随时跑路
+URL-REGEX,https://emby.kingemby.com:443/emby/Sessions/Playing/Progress?reqformat=json,REJECT
+
+
+# > 随时跑路
+URL-REGEX,https://em.mlhyy.top:443/emby/Sessions/Playing/Progress?reqformat=json,REJECT
+URL-REGEX,http://103.236.99.177:8096/emby/Sessions/Playing/Progress?reqformat=json,REJECT
+
+# > 爆米花
+URL-REGEX,https://tv.bmhyk.vip:443/emby/Sessions/Playing/Progress?reqformat=json,REJECT
+
+# > 光了个鸭
+URL-REGEX,https://gy.echoflix.de:443/emby/Sessions/Playing/Progress?reqformat=json,REJECT
