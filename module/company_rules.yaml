@@ -4,44 +4,68 @@ rules:
   - IP-CIDR,10.30.50.43/32,DIRECT,no-resolve
   - IP-CIDR,10.0.0.0/8,DIRECT
 
-  # 跳板机 (JUMPS)
-  - IP-CIDR,8.222.155.150/32,DIRECT
+    # > 跳板机 (JUMPS)
+  - IP-CIDR,8.222.155.150,DIRECT
 
-  # 国内平台-DEV (WEB | COMM | OCPP | CFC | GOV | FTP | RDS | NGX | 维护通道)
-  - IP-CIDR,120.77.67.137/32,DIRECT
-
-  # 国内/海外平台-测试中间件 (MQ | TD | ES)
-  - IP-CIDR,119.23.55.144/32,DIRECT
-
-  # 国内平台-PRE (WEB | COMM | OCPP | CFC | GOV | NGX)
-  - IP-CIDR,120.78.217.153/32,DIRECT
-
-  # 国内平台-生产1 (WEB | FTP | RDS)
-  - IP-CIDR,120.24.66.51/32,DIRECT
-
-  # 国内平台-生产2 (WEB | COMM | OCPP)
-  - IP-CIDR,112.74.212.236/32,DIRECT
-
-  # 国内平台-生产3 (GOV | MQ | NGX)
-  - IP-CIDR,120.79.15.86/32,DIRECT
-
-  # 国内平台-生产4 (COMM)
-  - IP-CIDR,112.74.168.89/32,DIRECT
-
-  # 国内平台-生产5 (COMM | CFC)
-  - IP-CIDR,120.79.96.193/32,DIRECT
-
-  # 国内平台-生产6 (ES | TD)
-  - IP-CIDR,8.129.125.13/32,DIRECT
-
-  # 国内平台-生产7 (ES)
-  - IP-CIDR,47.106.250.128/32,DIRECT
-
-  # 国内平台-生产8 (ES | TD)
-  - IP-CIDR,47.112.221.191/32,DIRECT
-
-  # 国内平台-生产9 (ES | TD)
-  - IP-CIDR,112.74.96.139/32,DIRECT
-
-  # 海外平台-DEV (WEB | COMM | APP | EVSE | RDS)
-  - IP-CIDR,120.77.244.119/32,DIRECT
+  # > 国内平台-DEV (WEB | COMM | OCPP | CFC | GOV | FTP | RDS | NGX | 维护通道)
+  - IP-CIDR,120.77.67.137,DIRECT
+  
+  # > 国内/海外平台-测试中间键 (MQ | TD  | ES)
+  - IP-CIDR,119.23.55.144,DIRECT
+  
+  # > 国内平台-PRE (WEB | COMM | OCPP | CFC | GOV | NGX)
+  - IP-CIDR,120.78.217.153,DIRECT
+  
+  # > 国内平台-生产1 (WEB | FTP | RDS)
+  - IP-CIDR,120.24.66.51,DIRECT
+  
+  # > 国内平台-生产2 (WEB | COMM | OCPP)
+  - IP-CIDR,112.74.212.236,DIRECT
+  
+  # > 国内平台-生产3 (GOV | MQ | NGX)
+  - IP-CIDR,120.79.15.86,DIRECT
+  
+  # > 国内平台-生产4 (COMM)
+  - IP-CIDR,112.74.168.89,DIRECT
+  
+  # > 国内平台-生产5 (COMM | CFC)
+  - IP-CIDR,120.79.96.193,DIRECT
+  
+  # > 国内平台-生产6 (ES | TD)
+  - IP-CIDR,8.129.125.13,DIRECT
+  
+  # > 国内平台-生产7 (ES)
+  - IP-CIDR,47.106.250.128,DIRECT
+  
+  # > 国内平台-生产8 (ES | TD)
+  - IP-CIDR,47.112.221.191,DIRECT
+  
+  # > 国内平台-生产9 (ES | TD)
+  - IP-CIDR,112.74.96.139,DIRECT
+  
+  # > 海外平台-DEV (WEB | COMM | APP | EVSE | RDS)
+  - IP-CIDR,120.77.244.119,DIRECT
+  
+  # > 海外平台-PRE (WEB | COMM | APP | EVSE)
+  - IP-CIDR,47.106.133.201,DIRECT
+  
+  # > 海外平台-生产1 (WEB | COMM | APP | MESH | RDS)
+  - IP-CIDR,3.126.56.213,DIRECT
+  
+  # > 海外平台-生产2 (WEB | COMM | APP )
+  - IP-CIDR,3.75.97.10,DIRECT
+  
+  # > 海外平台-生产3 (COMM)
+  - IP-CIDR,3.126.76.134,DIRECT
+  
+  # > 海外平台-生产4 (ES | TD)
+  - IP-CIDR,3.127.5.165,DIRECT
+  
+  # > 海外平台-生产5 (ES | TD)
+  - IP-CIDR,18.194.63.51,DIRECT
+  
+  # > 海外平台-生产6 (ES | TD)
+  - IP-CIDR,3.70.74.2,DIRECT
+  
+  # > 海外平台-生产7 (EVSE)
+  - IP-CIDR,3.75.184.119,DIRECT
