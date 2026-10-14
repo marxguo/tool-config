@@ -83,7 +83,7 @@ DOMAIN-SUFFIX,nay.007.us.kg,direct
 
 # > BB
 DOMAIN-SUFFIX,emby.bbqwq.com,direct
-IP-CIDR,35.74.225.107,direct
+IP-CIDR,35.74.225.107/32,direct
 
 
 
@@ -126,4 +126,4 @@ DOMAIN-SUFFIX,cf.sfcj.org,proxy
 DOMAIN-SUFFIX,media.emby.pro,proxy
 
 # > 水母
-IP-CIDR,23.146.72.90,proxy
+IP-CIDR,23.146.72.90/32,proxy
