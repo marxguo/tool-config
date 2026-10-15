@@ -1,35 +1,35 @@
 #!name=Emby 拦截回传
-#!desc=拦截各个 Emby 服务器的播放进度回传请求
+#!desc=拦截各个 Emby 服务器的播放进度回传请求（完美匹配版）
 #!author=用户自定义
 #!category=Emby 规则
 #!tag = 拦截, Emby
 #!system = iOS, iPadOS
 
 # > Wave
-https://02.bestemby.com:15666/emby/Sessions/Playing/Progress\?reqformat=json url reject
+^https?:\/\/02\.bestemby\.com:15666\/emby\/Sessions\/Playing\/Progress url reject
 
 # > 水母VIP
-http://pro1.jellyfin.asia:8099/emby/Sessions/Playing/Progress\?reqformat=json url reject
+^https?:\/\/pro1\.jellyfin\.asia:8099\/emby\/Sessions\/Playing\/Progress url reject
 
 # > 宸澄
-http://embycc.wybcs.work:443/emby/Sessions/Playing/Progress\?reqformat=json url reject
+^https?:\/\/embycc\.wybcs\.work:443\/emby\/Sessions\/Playing\/Progress url reject
 
 # > tvs168
-https://v.tvs168.cc:443/emby/Sessions/Playing/Progress\?reqformat=json url reject
+^https?:\/\/v\.tvs168\.cc:443\/emby\/Sessions\/Playing\/Progress url reject
 
 # > 随时跑路
-https://emby.kingemby.com:443/emby/Sessions/Playing/Progress\?reqformat=json url reject
-https://em.mlhyy.top:443/emby/Sessions/Playing/Progress\?reqformat=json url reject
-http://103.236.99.177:8096/emby/Sessions/Playing/Progress\?reqformat=json url reject
+^https?:\/\/emby\.kingemby\.com:443\/emby\/Sessions\/Playing/Progress url reject
+^https?:\/\/em\.mlhyy\.top:443\/emby\/Sessions\/Playing\/Progress url reject
+^https?:\/\/103\.236\.99\.177:8096\/emby\/Sessions\/Playing\/Progress url reject
 
 # > 爆米花
-https://tv.bmhyk.vip:443/emby/Sessions/Playing/Progress\?reqformat=json url reject
+^https?:\/\/tv\.bmhyk\.vip:443\/emby\/Sessions\/Playing\/Progress url reject
 
 # > 光了个鸭
-https://gy.echoflix.de:443/emby/Sessions/Playing/Progress\?reqformat=json url reject
+^https?:\/\/gy\.echoflix\.de:443\/emby\/Sessions\/Playing\/Progress url reject
 
 # > zealotmat
-http://n3.zealotmat.uk:8096/emby/Sessions/Playing/Progress\?reqformat=json url reject
+^https?:\/\/n3\.zealotmat\.uk:8096\/emby\/Sessions\/Playing\/Progress url reject
 
 # > 七七
-https://nas.4k520.cn:9099/emby/Sessions/Playing/Progress\?reqformat=json url reject
+^https?:\/\/nas\.4k520\.cn:9099\/emby\/Sessions\/Playing\/Progress url reject
