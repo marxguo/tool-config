@@ -174,3 +174,9 @@ URL-REGEX,https://tv.bmhyk.vip:443/emby/Sessions/Playing/Progress?reqformat=json
 
 # > 光了个鸭
 URL-REGEX,https://gy.echoflix.de:443/emby/Sessions/Playing/Progress?reqformat=json,REJECT
+
+# > zealotmat
+URL-REGEX,http://n3.zealotmat.uk:8096/emby/Sessions/Playing/Progress?reqformat=json,REJECT
+
+# > 七七
+URL-REGEX,https://nas.4k520.cn:9099/emby/Sessions/Playing/Progress?reqformat=json,REJECT
