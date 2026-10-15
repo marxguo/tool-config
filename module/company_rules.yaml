@@ -5,7 +5,7 @@ rules:
   - IP-CIDR,10.0.0.0/8,DIRECT
 
     # > 跳板机 (JUMPS)
-  - IP-CIDR,8.222.155.150,DIRECT
+  - IP-CIDR,8.222.155.150,PROXY
 
   # > 国内平台-DEV (WEB | COMM | OCPP | CFC | GOV | FTP | RDS | NGX | 维护通道)
   - IP-CIDR,120.77.67.137,DIRECT
@@ -50,22 +50,22 @@ rules:
   - IP-CIDR,47.106.133.201,DIRECT
   
   # > 海外平台-生产1 (WEB | COMM | APP | MESH | RDS)
-  - IP-CIDR,3.126.56.213,DIRECT
+  - IP-CIDR,3.126.56.213,PROXY
   
   # > 海外平台-生产2 (WEB | COMM | APP )
-  - IP-CIDR,3.75.97.10,DIRECT
+  - IP-CIDR,3.75.97.10,PROXY
   
   # > 海外平台-生产3 (COMM)
-  - IP-CIDR,3.126.76.134,DIRECT
+  - IP-CIDR,3.126.76.134,PROXY
   
   # > 海外平台-生产4 (ES | TD)
-  - IP-CIDR,3.127.5.165,DIRECT
+  - IP-CIDR,3.127.5.165,PROXY
   
   # > 海外平台-生产5 (ES | TD)
-  - IP-CIDR,18.194.63.51,DIRECT
+  - IP-CIDR,18.194.63.51,PROXY
   
   # > 海外平台-生产6 (ES | TD)
-  - IP-CIDR,3.70.74.2,DIRECT
+  - IP-CIDR,3.70.74.2,PROXY
   
   # > 海外平台-生产7 (EVSE)
-  - IP-CIDR,3.75.184.119,DIRECT
+  - IP-CIDR,3.75.184.119,PROXY
