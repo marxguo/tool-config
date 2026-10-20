@@ -59,9 +59,6 @@ DOMAIN-SUFFIX,www.yuntv.de,direct
 # > 月饼
 DOMAIN-SUFFIX,emby.my,direct
 
-# > nayovo
-DOMAIN-SUFFIX,nay.007.us.kg,direct
-
 # > 茶百道
 DOMAIN-SUFFIX,emby.teawaya.com,direct
 DOMAIN-SUFFIX,emby.7s.l.cd,direct
@@ -94,6 +91,16 @@ IP-CIDR,35.74.225.107/32,direct
 
 # > Wave
 DOMAIN-SUFFIX,02.bestemby.com,direct
+
+# > 快乐键
+DOMAIN-SUFFIX,happyskey.top,direct
+
+# > 萨姆
+DOMAIN-SUFFIX,emby.iataglobal.cloud,direct
+
+# > 果粒橙
+DOMAIN-SUFFIX,4ktv.blog,direct
+DOMAIN-SUFFIX,embys.blog,direct
 
 
 
@@ -138,6 +145,9 @@ DOMAIN-SUFFIX,media.emby.pro,proxy
 # > 水母
 IP-CIDR,23.146.72.90/32,proxy
 
+# > nayovo
+DOMAIN-SUFFIX,nay.007.us.kg,proxy
+
 
 
 
@@ -177,3 +187,14 @@ URL-REGEX,^https?://n3\.zealotmat\.uk:8096/emby/Sessions/Playing/Progress,REJECT
 
 # > 七七
 URL-REGEX,^https?://nas\.4k520\.cn:9099/emby/Sessions/Playing/Progress,REJECT
+
+
+# > 快乐键
+URL-REGEX,^http?://happyskey\.top:56661/emby/Sessions/Playing/Progress,REJECT
+
+# > 萨姆
+URL-REGEX,^https?://emby\.iataglobal\.cloud/emby/Sessions/Playing/Progress,REJECT
+
+# > 果粒橙
+URL-REGEX,^http?://embys\.blog:8096/emby/Sessions/Playing/Progress,REJECT
+URL-REGEX,^http?://4ktv\.blog:8096/emby/Sessions/Playing/Progress,REJECT

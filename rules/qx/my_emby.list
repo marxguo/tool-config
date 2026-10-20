@@ -52,9 +52,6 @@ DOMAIN-SUFFIX,www.yuntv.de,direct
 # > 月饼
 DOMAIN-SUFFIX,emby.my,direct
 
-# > nayovo
-DOMAIN-SUFFIX,nay.007.us.kg,direct
-
 # > 茶百道
 DOMAIN-SUFFIX,emby.teawaya.com,direct
 DOMAIN-SUFFIX,emby.7s.l.cd,direct
@@ -127,3 +124,6 @@ DOMAIN-SUFFIX,media.emby.pro,proxy
 
 # > 水母
 IP-CIDR,23.146.72.90/32,proxy
+
+# > nayovo
+DOMAIN-SUFFIX,nay.007.us.kg,proxy

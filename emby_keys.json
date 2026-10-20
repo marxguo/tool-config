@@ -597,20 +597,165 @@
                     "ReportedDeviceId": "822552d16cbe46ffbe3eadc8050e6547",
                     "DeviceId": 5,
                     "AppName": "nginx",
-                    "AppVersion": "4.8.8.0",
-                    "IpAddress": "172.21.0.1",
-                    "DeviceName": "ubunut2",
+                    "AppVersion": "4.9.3.0",
+                    "IpAddress": "104.28.163.16",
+                    "DeviceName": "Chrome_6635",
                     "UserId": 0,
                     "DateCreated": "2024-06-10T12:16:32.0000000Z",
-                    "DateLastActivity": "2026-10-15T14:48:32.0000000Z",
+                    "DateLastActivity": "2026-10-19T05:29:03.0000000Z",
                     "IsActive": true
                 }
             ],
             "TotalRecordCount": 1
         },
         "new_account": {
-            "username": "ftklqwwd",
-            "password": "ftklqwwd"
+            "username": "master_video",
+            "password": "master_video"
+        }
+    },
+    "4ktv.blog:8096": {
+        "name": "果粒橙",
+        "keys": {
+            "Items": [
+                {
+                    "Id": 5,
+                    "AccessToken": "e825ed6f7f8f44ffa0563cddaddce14d",
+                    "ReportedDeviceId": "2ccd0377cc3844998b1c803ec50507ca",
+                    "DeviceId": 6,
+                    "AppName": "xiaoya",
+                    "AppVersion": "4.8.0",
+                    "IpAddress": "172.17.0.4",
+                    "DeviceName": "iPhone",
+                    "UserId": 0,
+                    "DateCreated": "2023-10-02T15:29:25.0000000Z",
+                    "DateLastActivity": "2026-10-18T08:41:20.0000000Z",
+                    "IsActive": true
+                },
+                {
+                    "Id": 161,
+                    "AccessToken": "3f3e8a7da7a148caa9f2e5a92aea61d7",
+                    "ReportedDeviceId": "3daeddf5c15e45198b889ad475e220be",
+                    "DeviceId": 128,
+                    "AppName": "usersvr",
+                    "AppVersion": "4.9.3.0",
+                    "IpAddress": "103.29.142.5",
+                    "DeviceName": "Chrome_8210",
+                    "UserId": 0,
+                    "DateCreated": "2026-03-21T14:36:06.0000000Z",
+                    "DateLastActivity": "2026-10-18T08:41:01.0000000Z",
+                    "IsActive": true
+                },
+                {
+                    "Id": 127,
+                    "AccessToken": "ccd8add0e4a94990b21b9c4fec28d315",
+                    "ReportedDeviceId": "Emby Server DLNA",
+                    "DeviceId": 106,
+                    "AppName": "Emby Server DLNA",
+                    "AppVersion": "4.8.0",
+                    "IpAddress": "107.175.140.110",
+                    "DeviceName": "iPhone",
+                    "UserId": 0,
+                    "DateCreated": "2025-06-05T07:34:41.0000000Z",
+                    "DateLastActivity": "2026-10-16T14:49:57.0000000Z",
+                    "IsActive": true
+                },
+                {
+                    "Id": 128,
+                    "AccessToken": "a1ae0937d77c451b9b24f8db0325d57b",
+                    "ReportedDeviceId": "Emby Server DLNA",
+                    "DeviceId": 106,
+                    "AppName": "Emby Server DLNA",
+                    "AppVersion": "4.8.0",
+                    "IpAddress": "107.175.140.110",
+                    "DeviceName": "iPhone",
+                    "UserId": 0,
+                    "DateCreated": "2025-06-05T07:34:41.0000000Z",
+                    "DateLastActivity": "2026-10-16T14:49:57.0000000Z",
+                    "IsActive": true
+                },
+                {
+                    "Id": 166,
+                    "AccessToken": "3b8fdf9e041d4f4e9fe817113ac09f3e",
+                    "ReportedDeviceId": "3daeddf5c15e45198b889ad475e220be",
+                    "DeviceId": 128,
+                    "AppName": "toolkit",
+                    "AppVersion": "4.8.0",
+                    "IpAddress": "103.29.142.5",
+                    "DeviceName": "Chrome_8210",
+                    "UserId": 0,
+                    "DateCreated": "2026-03-22T06:14:23.0000000Z",
+                    "DateLastActivity": "2026-10-16T14:49:57.0000000Z",
+                    "IsActive": true
+                },
+                {
+                    "Id": 1868,
+                    "AccessToken": "b1561cdde13c49a4b2a8240dc73bb5d2",
+                    "ReportedDeviceId": "3daeddf5c15e45198b889ad475e220be",
+                    "DeviceId": 128,
+                    "AppName": "NG",
+                    "AppVersion": "4.8.0",
+                    "IpAddress": "103.29.142.5",
+                    "DeviceName": "Chrome_8210",
+                    "UserId": 0,
+                    "DateCreated": "2026-04-10T18:22:01.0000000Z",
+                    "DateLastActivity": "2026-10-16T14:49:57.0000000Z",
+                    "IsActive": true
+                }
+            ],
+            "TotalRecordCount": 6
+        },
+        "new_account": {
+            "username": "master_video",
+            "password": "master_video"
+        }
+    },
+    "emby.iataglobal.cloud": {
+        "name": "萨姆",
+        "keys": {
+            "Items": [
+                {
+                    "Id": 3,
+                    "LocalUserId": "0b0c327688c54d20bf2ce998d8e13dc2",
+                    "AccessToken": "13019786543c4b75bef61fd422983531",
+                    "ReportedDeviceId": "822552d16cbe46ffbe3eadc8050e6547",
+                    "DeviceId": 5,
+                    "AppName": "nginx",
+                    "AppVersion": "4.9.3.0",
+                    "IpAddress": "104.28.163.16",
+                    "DeviceName": "Chrome_6635",
+                    "UserId": 0,
+                    "DateCreated": "2024-06-10T12:16:32.0000000Z",
+                    "DateLastActivity": "2026-10-19T05:29:03.0000000Z",
+                    "IsActive": true
+                }
+            ],
+            "TotalRecordCount": 1
+        },
+        "new_account": {
+            "username": "master_video_main",
+            "password": "master_video_main"
+        }
+    },
+    "happyskey.top:56661": {
+        "name": "快乐键",
+        "keys": {
+            "Items": [
+                {
+                    "Id": 2076,
+                    "AccessToken": "887bd92fa1aa4938a34d968b9575ab74",
+                    "ReportedDeviceId": "94ee82b551434e20a72eb8080f3fdb28",
+                    "DeviceId": 2243,
+                    "AppName": "xy",
+                    "AppVersion": "4.9.0.42",
+                    "IpAddress": "192.168.1.5",
+                    "DeviceName": "xiaoya 全家桶",
+                    "UserId": 0,
+                    "DateCreated": "2025-09-22T01:38:31.0000000Z",
+                    "DateLastActivity": "2026-10-19T10:57:13.0000000Z",
+                    "IsActive": true
+                }
+            ],
+            "TotalRecordCount": 1
         }
     }
 }
