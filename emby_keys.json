@@ -757,5 +757,30 @@
             ],
             "TotalRecordCount": 1
         }
+    },
+    "danhuatang.de5.net": {
+        "name": "蛋花汤",
+        "keys": {
+            "Items": [
+                {
+                    "Id": 39,
+                    "AccessToken": "d74dd04afd1f4de093128728382cbd56",
+                    "ReportedDeviceId": "0af5d1d0a38f4de1a001aa0bcd92f8d0",
+                    "DeviceId": 49,
+                    "AppName": "nginx",
+                    "AppVersion": "4.10.1.0",
+                    "IpAddress": "103.79.186.34",
+                    "DeviceName": "DHT EMBY",
+                    "UserId": 0,
+                    "DateCreated": "2026-10-21T06:01:09.0000000Z",
+                    "IsActive": true
+                }
+            ],
+            "TotalRecordCount": 1
+        },
+        "new_account": {
+            "username": "master_video",
+            "password": "master_video"
+        }
     }
 }
