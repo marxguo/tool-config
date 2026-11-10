@@ -148,7 +148,8 @@ IP-CIDR,23.146.72.90/32,proxy
 # > nayovo
 DOMAIN-SUFFIX,nay.007.us.kg,proxy
 
-
+# > 茶百道
+DOMAIN-SUFFIX,emby.chapanda.site,proxy
 
 
 

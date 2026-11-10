@@ -782,5 +782,30 @@
             "username": "master_video",
             "password": "master_video"
         }
+    },
+    "emby.barrybarry.top": {
+        "keys": {
+            "Items": [
+                {
+                    "Id": 6,
+                    "AccessToken": "5d662918de93456081d5d390cad9602f",
+                    "ReportedDeviceId": "5a384044683e4ed195117b6c6fe28f38",
+                    "DeviceId": 6,
+                    "AppName": "EmbySourceSync",
+                    "AppVersion": "1.0.0",
+                    "IpAddress": "172.18.0.2",
+                    "DeviceName": "Sakura BOT",
+                    "UserId": 0,
+                    "DateCreated": "2026-10-13T03:20:51.0000000Z",
+                    "DateLastActivity": "2026-11-03T08:09:48.0000000Z",
+                    "IsActive": true
+                }
+            ],
+            "TotalRecordCount": 1
+        },
+        "new_account": {
+            "username": "master_video",
+            "password": "master_video"
+        }
     }
 }
