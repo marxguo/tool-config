@@ -1,16 +1,23 @@
 /**
- * CC Play 开放注册检测与自动提交脚本 (Quantumult X)
- * 1. 请求 /api/public/bootstrap 检查 switches.allowPublicRegistration === true
- * 2. 开放时调用 /api/user/register 提交注册参数
+ * CC Play 开放注册检测 -> 发送邮箱验证码 -> 注册脚本 (Quantumult X)
  */
 
 const CONFIG = {
   bootstrapUrl: "https://ccemby.eu.org/api/public/bootstrap",
+  sendCodeUrl: "https://ccemby.eu.org/api/auth/send-email-code",
   registerUrl: "https://ccemby.eu.org/api/user/register",
-  // 注册成功后是否自动关闭/跳过后续执行（防止重复请求，设为 true 建议配合 BoxJs 或脚本内状态）
+
+  // 注册成功后是否跳过后续执行
   stopAfterSuccess: true,
-  // 若未开放注册，是否也发通知（高频定时建议 false，避免通知轰炸）
+  // 检测到开放注册并发送验证码后，是否立即调用注册接口：
+  // false: 先发验证码并通知你去收邮件获取最新验证码（15分钟有效），等填好/自动写入 email_code 后再注册
+  // true:  发完验证码后立刻使用当前配置的 email_code 发起注册
+  registerAfterSendCode: false,
+  // 未开放注册时是否发通知
   notifyWhenClosed: false,
+  // 验证码发送冷却时间（秒），防止短时间内重复发码触发接口限流（默认 120 秒）
+  sendCodeCooldownSec: 120,
+
   headers: {
     "Accept": "*/*",
     "Accept-Language": "zh-CN,zh;q=0.9",
@@ -27,75 +34,123 @@ const CONFIG = {
     "sec-ch-ua-mobile": "?0",
     "sec-ch-ua-platform": '"Windows"'
   },
-  body: {
+
+  sendCodeBody: {
+    email: "max1036725897@gmail.com",
+    purpose: "REGISTER"
+  },
+
+  registerBody: {
     username: "guosir",
     email: "max1036725897@gmail.com",
     password: "Aa1010110",
     voucher_code: "",
-    // requireEmailVerification 为 true 时通常需要有效验证码（15分钟有效），后续可动态注入
-    email_code: "809506"
+    // 验证码15分钟有效；可在此手动填写，或由外部写入 $prefs 的 EMAIL_CODE_KEY 自动读取
+    email_code: ""
   }
 };
 
 const DONE_KEY = "CCPLAY_REGISTER_DONE";
+const LAST_SEND_CODE_TS_KEY = "CCPLAY_LAST_SEND_CODE_TS";
+const DYNAMIC_EMAIL_CODE_KEY = "CCPLAY_EMAIL_CODE";
 
 function notify(title, subtitle, content) {
   $notify(title, subtitle, content);
 }
 
-function checkBootstrap() {
+function requestJson(url, method, payloadObj = null) {
   return new Promise((resolve, reject) => {
     const req = {
-      url: CONFIG.bootstrapUrl,
-      method: "GET",
+      url,
+      method,
       headers: CONFIG.headers
     };
+    if (payloadObj !== null) {
+      req.body = JSON.stringify(payloadObj);
+    }
 
     $task.fetch(req).then(
       (resp) => {
+        let parsed = null;
         try {
-          const data = JSON.parse(resp.body || "{}");
-          const allowed = Boolean(data && data.switches && data.switches.allowPublicRegistration === true);
-          const requireEmail = Boolean(data && data.switches && data.switches.requireEmailVerification);
-          const siteName = (data && data.branding && data.branding.site_name) || "CC Play";
-          resolve({ allowed, requireEmail, siteName, raw: data });
-        } catch (e) {
-          reject(new Error("解析 bootstrap 响应失败: " + e.message));
-        }
+          parsed = JSON.parse(resp.body || "{}");
+        } catch (_) {}
+        resolve({
+          statusCode: resp.statusCode,
+          rawBody: resp.body || "",
+          json: parsed
+        });
       },
       (err) => {
-        reject(new Error("请求 bootstrap 失败: " + (err && err.error ? err.error : JSON.stringify(err))));
+        reject(new Error(`请求 ${url} 失败: ` + (err && err.error ? err.error : JSON.stringify(err))));
       }
     );
   });
 }
 
-function doRegister() {
-  return new Promise((resolve, reject) => {
-    const req = {
-      url: CONFIG.registerUrl,
-      method: "POST",
-      headers: CONFIG.headers,
-      body: JSON.stringify(CONFIG.body)
-    };
+function isApiSuccess(res) {
+  const httpOk = res.statusCode >= 200 && res.statusCode < 300;
+  if (!httpOk) return false;
+  if (!res.json) return true;
 
-    $task.fetch(req).then(
-      (resp) => {
-        resolve({
-          statusCode: resp.statusCode,
-          body: resp.body
-        });
-      },
-      (err) => {
-        reject(new Error("请求 register 失败: " + (err && err.error ? err.error : JSON.stringify(err))));
-      }
-    );
-  });
+  if (res.json.success === false) return false;
+  if (typeof res.json.code === "number" && res.json.code < 0) return false;
+  if (/error|fail|invalid|expired|验证码|已存在|关闭|频繁|limit/i.test(JSON.stringify(res.json))) {
+    return false;
+  }
+  return true;
+}
+
+async function checkBootstrap() {
+  const res = await requestJson(CONFIG.bootstrapUrl, "GET");
+  if (!res.json) {
+    throw new Error("解析 bootstrap 响应失败: " + res.rawBody.slice(0, 120));
+  }
+  const data = res.json;
+  return {
+    allowed: Boolean(data && data.switches && data.switches.allowPublicRegistration === true),
+    requireEmail: Boolean(data && data.switches && data.switches.requireEmailVerification),
+    siteName: (data && data.branding && data.branding.site_name) || "CC Play"
+  };
+}
+
+async function sendEmailCode() {
+  const nowSec = Math.floor(Date.now() / 1000);
+  const lastSec = Number($prefs.valueForKey(LAST_SEND_CODE_TS_KEY) || "0");
+  const elapsed = nowSec - lastSec;
+
+  if (lastSec > 0 && elapsed < CONFIG.sendCodeCooldownSec) {
+    const waitSec = CONFIG.sendCodeCooldownSec - elapsed;
+    console.log(`[CCPlay] 距离上次发送验证码仅 ${elapsed}s，冷却中（还需 ${waitSec}s），跳过重复发码`);
+    return { skipped: true, waitSec };
+  }
+
+  const res = await requestJson(CONFIG.sendCodeUrl, "POST", CONFIG.sendCodeBody);
+  console.log(`[CCPlay] 发送验证码响应 (${res.statusCode}): ${res.rawBody}`);
+
+  const ok = isApiSuccess(res);
+  if (ok) {
+    $prefs.setValueForKey(String(nowSec), LAST_SEND_CODE_TS_KEY);
+  }
+  return { skipped: false, ok, res };
+}
+
+async function doRegister(emailCode) {
+  const payload = {
+    ...CONFIG.registerBody,
+    email_code: emailCode
+  };
+  const res = await requestJson(CONFIG.registerUrl, "POST", payload);
+  console.log(`[CCPlay] 注册响应 (${res.statusCode}): ${res.rawBody}`);
+  return {
+    ok: isApiSuccess(res),
+    res
+  };
 }
 
 (async () => {
   if (CONFIG.stopAfterSuccess && $prefs.valueForKey(DONE_KEY) === "1") {
-    console.log("[CCPlay] 已标记注册完成，跳过执行。如需重新运行，请清除 prefs 中的 " + DONE_KEY);
+    console.log("[CCPlay] 已标记注册完成，跳过执行。");
     $done();
     return;
   }
@@ -112,36 +167,55 @@ function doRegister() {
       return;
     }
 
-    const regRes = await doRegister();
-    console.log(`[CCPlay] 注册响应状态码: ${regRes.statusCode} | 响应内容: ${regRes.body}`);
+    // 开放注册时，先调用发送验证码接口
+    const codeResult = await sendEmailCode();
+    if (!codeResult.skipped) {
+      if (codeResult.ok) {
+        notify(
+          info.siteName,
+          "已触发发送注册验证码",
+          `邮箱: ${CONFIG.sendCodeBody.email}\n验证码15分钟内有效，请查收邮件`
+        );
+      } else {
+        notify(
+          info.siteName,
+          "发送注册验证码失败",
+          `状态码: ${codeResult.res.statusCode}\n响应: ${codeResult.res.rawBody.slice(0, 200)}`
+        );
+      }
+    }
 
-    let parsedBody = null;
-    try {
-      parsedBody = JSON.parse(regRes.body || "{}");
-    } catch (_) {}
+    // 优先读取外部/脚本写入的动态验证码，其次使用脚本内配置的 email_code
+    const prefCode = ($prefs.valueForKey(DYNAMIC_EMAIL_CODE_KEY) || "").trim();
+    const emailCode = prefCode || (CONFIG.registerBody.email_code || "").trim();
 
-    // 根据常见接口返回特征判断是否成功（可按实际成功返回字段微调）
-    const isHttpOk = regRes.statusCode >= 200 && regRes.statusCode < 300;
-    const isBusinessFail =
-      parsedBody &&
-      (parsedBody.success === false ||
-        parsedBody.code < 0 ||
-        /error|fail|invalid|expired|验证码|已存在|关闭/i.test(JSON.stringify(parsedBody)));
+    if (!CONFIG.registerAfterSendCode && !prefCode) {
+      console.log("[CCPlay] registerAfterSendCode=false 且无动态验证码，本次仅发送验证码，等待获取验证码后再注册。");
+      $done();
+      return;
+    }
 
-    if (isHttpOk && !isBusinessFail) {
+    if (info.requireEmail && !emailCode) {
+      console.log("[CCPlay] 站点要求邮箱验证但当前 email_code 为空，跳过注册请求。");
+      $done();
+      return;
+    }
+
+    const regResult = await doRegister(emailCode);
+    if (regResult.ok) {
       if (CONFIG.stopAfterSuccess) {
         $prefs.setValueForKey("1", DONE_KEY);
       }
       notify(
         info.siteName,
-        "检测到开放注册并已提交！",
-        `用户: ${CONFIG.body.username}\n状态码: ${regRes.statusCode}\n响应: ${(regRes.body || "").slice(0, 180)}`
+        "注册请求已成功提交！",
+        `用户: ${CONFIG.registerBody.username}\n状态码: ${regResult.res.statusCode}\n响应: ${regResult.res.rawBody.slice(0, 180)}`
       );
     } else {
       notify(
         info.siteName,
-        "已检测到开放注册，但注册接口返回异常",
-        `状态码: ${regRes.statusCode}\n响应: ${(regRes.body || "").slice(0, 220)}`
+        "注册接口返回异常",
+        `状态码: ${regResult.res.statusCode}\n响应: ${regResult.res.rawBody.slice(0, 220)}`
       );
     }
   } catch (err) {
